@@ -1,0 +1,34 @@
+<div align="center">
+    <h1>Employees List</h1>
+    <h3>Click on the table column headings to order</h3>
+    <table border="2">
+        <tr>
+            <td (click)="sort('id')">id</td>
+            <td (click)="sort('name')">name</td>
+            <td>Operation</td>
+        </tr>
+        
+        <tr *ngFor="let index of emp |orderBy:column:order">
+            <td>{{index.id}}</td>
+            <td>{{index.name}}</td>
+           
+         <td><button (click)="delete(index.id)" type="button">delete</button></td>
+        <td><button type="button" (click)="updateData()">Update</button></td>
+        </tr>
+    </table><br>
+    <div align="center" *ngIf=!isUpdate>
+        <form #upd="ngForm" (ngSubmit)="update(upd.value)">
+            <table border="2">
+                <tr>
+                    <td>id</td>
+                    <td>name</td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="id" ngModel/></td>
+                <td><input type="text" name="name" ngModel/></td>
+                </tr>
+            </table><br>
+            <input type="submit" value="Update"/>
+        </form>
+    </div>
+</div>
